@@ -1,7 +1,11 @@
+*{
+     font-family: Verdana, Tahoma, sans-serif;
+}
+
 header {
      padding: 30px 25px;
      border-bottom: 2px solid  darkgray;
-     }
+}
 
 .flex-container-header{
      display: flex;
@@ -10,7 +14,7 @@ header {
      padding: 0;
      margin: 0;
      list-style: none;
-     }
+}
 
 .flex-item-header {
      padding: 0px;
@@ -22,4 +26,40 @@ header {
      font-weight: bold;
      font-size: 1em;
      text-align: center;
-     }
+}
+
+.flex-container-main {
+     display: flex;
+     flex-direction: column;
+     padding: 10px;
+}
+
+.flex-item-question {
+     padding: 20px;
+     width: 200px;
+     height: 20px;
+     margin-top: 10%;
+     margin-left: 10%;
+     margin-bottom: 5%;
+     color: black;
+     font-size: 2em;
+     text-align: left;   
+}
+
+.flex-item-answer {
+     padding: 20px;
+     width: 30%;
+     height: 15px;
+     margin-top: 10px;
+     margin-left: 10%;
+     line-height: 20px;
+     color: black;
+     font-size: 1em;
+     text-align: left;
+     background: darkgray;
+     border-radius: 10px;
+}
+
+.flex-item-answer:hover {
+     background: lightsalmon;
+}
