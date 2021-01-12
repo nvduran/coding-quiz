@@ -220,10 +220,10 @@ highscoresEl.addEventListener("click", highScoresCheck);
 var timeInterval = setInterval(function(){
      secondsVal++
      var secondsRemaining = 60-secondsVal;
-     if(secondsRemaining > 0){
+     if(secondsRemaining >= 1){
           timerEl.textContent=secondsRemaining;
      }else{
-          if(isGameOver=true){
+          if(footerEl.innerHTML = "<h2>WINNER!<h2>"){
           console.log("no");
           clearInterval();
           }else{
