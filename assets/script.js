@@ -65,6 +65,7 @@ var gameStart = function(){
 }
 
 var askQuestion1 = function(){
+     console.log(isGameOver);
      //add .correct-answer class to right answer    
      function addClasstoCorrectAnswer() {
           var element = document.getElementById("answer4");
@@ -96,6 +97,7 @@ var askQuestion1 = function(){
 };
 
 var askQuestion2 = function(){
+     console.log(isGameOver);
      //add .correct-answer class to right answer    
      function addClasstoCorrectAnswer() {
           var element = document.getElementById("answer1");
@@ -125,6 +127,7 @@ var askQuestion2 = function(){
 };
 
 var askQuestion3 = function(){
+     console.log(isGameOver);
      //add .correct-answer class to right answer    
      function addClasstoCorrectAnswer() {
           var element = document.getElementById("answer3");
@@ -153,6 +156,7 @@ var askQuestion3 = function(){
 };
 
 var askQuestion4 = function(){
+     console.log(isGameOver);
      //add .correct-answer class to right answer    
      function addClasstoCorrectAnswer() {
           var element = document.getElementById("answer2");
@@ -182,13 +186,17 @@ var askQuestion4 = function(){
 };
 
 var gameLoss = function(){
+     if(isGameOver = false){
      footerEl.innerHTML = "<h1>GAME OVER<h1>";
      window.alert("Your score was " + scoreCounter);
-
+     }else{
+     console.log("game already over");  
+     }
 };
 
 var gameWin = function(){
      isGameOver = true;
+     console.log(isGameOver);
      footerEl.innerHTML = "<h2>WINNER!<h2>";
      window.alert("Your score was " + scoreCounter + "!");
      var initials = window.prompt("Enter your Initials");
@@ -223,12 +231,9 @@ var timeInterval = setInterval(function(){
      if(secondsRemaining >= 1){
           timerEl.textContent=secondsRemaining;
      }else{
-          if(footerEl.innerHTML = "<h2>WINNER!<h2>"){
-          console.log("no");
-          clearInterval();
-          }else{
+          console.log(isGameOver);
+          console.log(secondsRemaining);
           gameLoss();
-          clearInterval();
-          }
+          clearInterval();        
      }
 },1000);
