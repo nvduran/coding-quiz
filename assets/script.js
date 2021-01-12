@@ -11,6 +11,9 @@ var highscoresEl = document.querySelector("#high-scores");
 var isGameOver = false;
 var scoreCounter = 0;
 
+
+
+
 var questionStart = {
      q1:"",
      a1:"",
@@ -66,6 +69,7 @@ var gameStart = function(){
 
 var askQuestion1 = function(){
      console.log(isGameOver);
+     timerStart()
      //add .correct-answer class to right answer    
      function addClasstoCorrectAnswer() {
           var element = document.getElementById("answer4");
@@ -162,6 +166,7 @@ var askQuestion4 = function(){
           var element = document.getElementById("answer2");
           element.classList.add("correct-answer");
      }
+     
      addClasstoCorrectAnswer();
 
      var answerChecker = function(event) {
@@ -186,12 +191,11 @@ var askQuestion4 = function(){
 };
 
 var gameLoss = function(){
-     if(isGameOver = false){
+     
      footerEl.innerHTML = "<h1>GAME OVER<h1>";
      window.alert("Your score was " + scoreCounter);
-     }else{
-     console.log("game already over");  
-     }
+     console.log("game already over"); 
+     
 };
 
 var gameWin = function(){
@@ -225,15 +229,22 @@ gameStart();
 
 highscoresEl.addEventListener("click", highScoresCheck);
 
+
+function timerStart(){
 var timeInterval = setInterval(function(){
      secondsVal++
      var secondsRemaining = 60-secondsVal;
      if(secondsRemaining >= 1){
           timerEl.textContent=secondsRemaining;
      }else{
+          if(isGameOver===false){
           console.log(isGameOver);
-          console.log(secondsRemaining);
+          console.log("game over");
           gameLoss();
-          clearInterval();        
+          clearInterval(timeInterval);
+          }else{
+          console.log("game ended prev");    
+          }
      }
 },1000);
+};
