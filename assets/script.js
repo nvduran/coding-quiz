@@ -6,6 +6,7 @@ var answer3El = document.querySelector("#answer3");
 var answer4El = document.querySelector("#answer4");
 var questionEl = document.querySelector("#question");
 var answerContentEl = document.querySelector("#answer-content");
+var footerEl = document.querySelector("#footer-text");
 
 var question1 = {
      q1:"Arrays in Javascript can be used to store:",
@@ -58,6 +59,7 @@ var askQuestion1 = function(){
                element.classList.remove("correct-answer");
           }else{
                console.log("incorrect :(")
+               secondsVal = secondsVal+5;
           }
      }; 
      questionEl.textContent=question1.q1;
@@ -84,6 +86,7 @@ var askQuestion2 = function(){
                askQuestion3();
           }else{
                console.log("incorrect :(")
+               
           }
      };
      questionEl.textContent=question2.q1;
@@ -137,8 +140,11 @@ var askQuestion4 = function(){
                console.log("correct!")
                var element = document.getElementById("answer2");
                element.classList.remove("correct-answer");
+               gameWin();
           }else{
                console.log("incorrect :(")
+               
+               
           }
      };
      questionEl.textContent=question4.q1;
@@ -146,10 +152,16 @@ var askQuestion4 = function(){
      answer2El.textContent=question4.a2;
      answer3El.textContent=question4.a3;
      answer4El.textContent=question4.a4;
-     answerContentEl.addEventListener("click", answerChecker);
-     
+     answerContentEl.addEventListener("click", answerChecker);     
 };
 
+var gameLoss = function(){
+     footerEl.innerHTML = "<h1>GAME OVER<h1>";
+};
+
+var gameWin = function(){
+     footerEl.innerHTML = "<h2>WINNER!<h2>";
+};
 //get q1 started
 askQuestion1();
 
@@ -162,5 +174,6 @@ var timeInterval = setInterval(function(){
           timerEl.textContent=secondsRemaining;
      }else{
           clearInterval();
+          gameLoss();
      }
 },1000);

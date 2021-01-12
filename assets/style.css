@@ -7,6 +7,13 @@ header {
      border-bottom: 2px solid  darkgray;
 }
 
+h1 {
+     color: red;
+}
+
+h2{
+     color: green;
+}
 .flex-container-header{
      display: flex;
      flex-flow: row wrap;
@@ -63,6 +70,12 @@ header {
 
 .flex-item-answer:hover {
      background: lightsalmon;
+}
+
+.flex-container-footer {
+     display: flex;
+     flex-direction: row;
+     padding: 10px;
 }
 
 .correct-answer{
