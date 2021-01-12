@@ -185,8 +185,10 @@ var gameWin = function(){
 };
 
 var highScoresCheck = function(){
-     var highScoreStmt = ("The high score is " + highScore);
-     footerEl.value=highScoreStmt;
+     var highScore = localStorage.getItem("highscore") || 0;
+     var highScorename = localStorage.getItem("name") || "not set";
+     var highScoreStmt = ("The high score is " + highScore + " set by " + highScorename);
+     footerEl.textContent=highScoreStmt;
 };
 
 
