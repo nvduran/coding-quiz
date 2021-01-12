@@ -23,6 +23,22 @@ var question2 = {
      a4:"**",          
 };
 
+var question3 = {
+     q1:"what will console.log('1+1') display?",
+     a1:"2",
+     a2:"'2'",
+     a3:"'1+1'",
+     a4:"none of the above",          
+};
+
+var question4 = {
+     q1:"what is the name for '{' ",
+     a1:"squiggle",
+     a2:"curly bracket",
+     a3:"fun bracket",
+     a4:"that which shall not be named",          
+};
+
 
 
 var askQuestion1 = function(){
@@ -43,7 +59,7 @@ var askQuestion1 = function(){
           }else{
                console.log("incorrect :(")
           }
-     };
+     }; 
      questionEl.textContent=question1.q1;
      answer1El.textContent=question1.a1;
      answer2El.textContent=question1.a2;
@@ -65,7 +81,7 @@ var askQuestion2 = function(){
           var targetEl=event.target;
           if (targetEl.matches(".correct-answer")){
                console.log("correct!")
-               
+               askQuestion3();
           }else{
                console.log("incorrect :(")
           }
@@ -79,12 +95,63 @@ var askQuestion2 = function(){
      
 };
 
+var askQuestion3 = function(){
+     //add .correct-answer class to right answer    
+     function addClasstoCorrectAnswer() {
+          var element = document.getElementById("answer3");
+          element.classList.add("correct-answer");
+     }
+     addClasstoCorrectAnswer();
 
+     var answerChecker = function(event) {
+          var targetEl=event.target;
+          if (targetEl.matches(".correct-answer")){
+               console.log("correct!")
+               var element = document.getElementById("answer3");
+               element.classList.remove("correct-answer");
+               askQuestion4();
+          }else{
+               console.log("incorrect :(")
+          }
+     };
+     questionEl.textContent=question3.q1;
+     answer1El.textContent=question3.a1;
+     answer2El.textContent=question3.a2;
+     answer3El.textContent=question3.a3;
+     answer4El.textContent=question3.a4;
+     answerContentEl.addEventListener("click", answerChecker);
+     
+};
+
+var askQuestion4 = function(){
+     //add .correct-answer class to right answer    
+     function addClasstoCorrectAnswer() {
+          var element = document.getElementById("answer2");
+          element.classList.add("correct-answer");
+     }
+     addClasstoCorrectAnswer();
+
+     var answerChecker = function(event) {
+          var targetEl=event.target;
+          if (targetEl.matches(".correct-answer")){
+               console.log("correct!")
+               var element = document.getElementById("answer2");
+               element.classList.remove("correct-answer");
+          }else{
+               console.log("incorrect :(")
+          }
+     };
+     questionEl.textContent=question4.q1;
+     answer1El.textContent=question4.a1;
+     answer2El.textContent=question4.a2;
+     answer3El.textContent=question4.a3;
+     answer4El.textContent=question4.a4;
+     answerContentEl.addEventListener("click", answerChecker);
+     
+};
+
+//get q1 started
 askQuestion1();
-
-
-
-
 
 
 
