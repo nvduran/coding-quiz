@@ -195,7 +195,17 @@ var gameLoss = function(){
      footerEl.innerHTML = "<h1>GAME OVER<h1>";
      window.alert("Your score was " + scoreCounter);
      console.log("game already over"); 
-     
+     var initials = window.prompt("Enter your Initials");
+
+     var highScore = localStorage.getItem("highscore") || 0;
+     var highScorename = localStorage.getItem("name") || "";
+     if (scoreCounter > highScore) {
+          localStorage.setItem("highscore", scoreCounter);
+          localStorage.setItem("name", initials);
+          alert("You now have the high score of " + scoreCounter + "!");
+          } else {
+          alert("You did not beat the high score of " + highScore + " set by " + highScorename);
+        }
 };
 
 var gameWin = function(){
