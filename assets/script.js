@@ -7,6 +7,10 @@ var answer4El = document.querySelector("#answer4");
 var questionEl = document.querySelector("#question");
 var answerContentEl = document.querySelector("#answer-content");
 var footerEl = document.querySelector("#footer-text");
+var highscoresEl = document.querySelector("#high-scores");
+var isGameOver = false;
+var scoreCounter = 0;
+
 
 var question1 = {
      q1:"Arrays in Javascript can be used to store:",
@@ -57,6 +61,8 @@ var askQuestion1 = function(){
                askQuestion2();
                var element = document.getElementById("answer4");
                element.classList.remove("correct-answer");
+               scoreCounter=scoreCounter+1;
+               console.log(scoreCounter);
           }else{
                console.log("incorrect :(")
                secondsVal = secondsVal+5;
@@ -140,6 +146,7 @@ var askQuestion4 = function(){
                console.log("correct!")
                var element = document.getElementById("answer2");
                element.classList.remove("correct-answer");
+               isGameOver=true;
                gameWin();
           }else{
                console.log("incorrect :(")
@@ -157,15 +164,36 @@ var askQuestion4 = function(){
 
 var gameLoss = function(){
      footerEl.innerHTML = "<h1>GAME OVER<h1>";
+     window.alert("Your score was " + scoreCounter);
+
 };
 
 var gameWin = function(){
      footerEl.innerHTML = "<h2>WINNER!<h2>";
+     window.alert("Your score was " + scoreCounter + "!");
+     var initials = window.prompt("Enter your Initials");
+
+     var highScore = localStorage.getItem("highscore") || 0;
+     var highScorename = localStorage.getItem("name") || "";
+     if (scoreCounter > highScore) {
+          localStorage.setItem("highscore", scoreCounter);
+          localStorage.setItem("name", initials);
+          alert("You now have the high score of " + scoreCounter + "!");
+          } else {
+          alert("You did not beat the high score of " + highScore + " set by " + highScorename);
+        }
 };
+
+var highScoresCheck = function(){
+     var highScoreStmt = ("The high score is " + highScore);
+     footerEl.value=highScoreStmt;
+};
+
+
 //get q1 started
 askQuestion1();
 
-
+highscoresEl.addEventListener("click", highScoresCheck);
 
 var timeInterval = setInterval(function(){
      secondsVal++
@@ -173,7 +201,11 @@ var timeInterval = setInterval(function(){
      if(secondsRemaining >= 1){
           timerEl.textContent=secondsRemaining;
      }else{
+          if(isGameOver=true){
           clearInterval();
+          }else{
           gameLoss();
+          clearInterval();
+          }
      }
 },1000);
