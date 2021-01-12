@@ -11,6 +11,13 @@ var highscoresEl = document.querySelector("#high-scores");
 var isGameOver = false;
 var scoreCounter = 0;
 
+var questionStart = {
+     q1:"",
+     a1:"",
+     a2:"",
+     a3:"",
+     a4:"",      
+};
 
 var question1 = {
      q1:"Arrays in Javascript can be used to store:",
@@ -44,7 +51,18 @@ var question4 = {
      a4:"that which shall not be named",          
 };
 
-
+var gameStart = function(){
+     questionEl.textContent=questionStart.q1;
+     answer1El.textContent=questionStart.a1;
+     answer2El.textContent=questionStart.a2;
+     answer3El.textContent=questionStart.a3;
+     answer4El.textContent=questionStart.a4;
+     var startButtonEl = document.createElement("button");
+     startButtonEl.textContent = "Start!";
+     startButtonEl.className = "start btn";
+     footerEl.appendChild(startButtonEl);
+     startButtonEl.addEventListener("click", askQuestion1);
+}
 
 var askQuestion1 = function(){
      //add .correct-answer class to right answer    
@@ -89,6 +107,8 @@ var askQuestion2 = function(){
           var targetEl=event.target;
           if (targetEl.matches(".correct-answer")){
                console.log("correct!")
+               var element = document.getElementById("answer1");
+               element.classList.remove("correct-answer");
                askQuestion3();
           }else{
                console.log("incorrect :(")
@@ -146,7 +166,6 @@ var askQuestion4 = function(){
                console.log("correct!")
                var element = document.getElementById("answer2");
                element.classList.remove("correct-answer");
-               isGameOver=true;
                gameWin();
           }else{
                console.log("incorrect :(")
@@ -169,6 +188,7 @@ var gameLoss = function(){
 };
 
 var gameWin = function(){
+     isGameOver = true;
      footerEl.innerHTML = "<h2>WINNER!<h2>";
      window.alert("Your score was " + scoreCounter + "!");
      var initials = window.prompt("Enter your Initials");
@@ -192,18 +212,19 @@ var highScoresCheck = function(){
 };
 
 
-//get q1 started
-askQuestion1();
+//start game
+gameStart();
 
 highscoresEl.addEventListener("click", highScoresCheck);
 
 var timeInterval = setInterval(function(){
      secondsVal++
      var secondsRemaining = 60-secondsVal;
-     if(secondsRemaining >= 1){
+     if(secondsRemaining > 0){
           timerEl.textContent=secondsRemaining;
      }else{
           if(isGameOver=true){
+          console.log("no");
           clearInterval();
           }else{
           gameLoss();
