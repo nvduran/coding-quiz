@@ -36,7 +36,7 @@ header {
 
 .flex-item-question {
      padding: 20px;
-     width: 200px;
+     min-width: 400px;
      height: 20px;
      margin-top: 10%;
      margin-left: 10%;
@@ -48,11 +48,11 @@ header {
 
 .flex-item-answer {
      padding: 20px;
-     width: 30%;
+     width: 40%;
      height: 15px;
      margin-top: 10px;
      margin-left: 10%;
-     line-height: 20px;
+     line-height: 50%;
      color: black;
      font-size: 1em;
      text-align: left;
@@ -63,4 +63,8 @@ header {
 
 .flex-item-answer:hover {
      background: lightsalmon;
+}
+
+.correct-answer{
+
 }
